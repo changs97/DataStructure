@@ -99,8 +99,9 @@ int main() {
 	add_front(pdq, 1); // NULL 1
 	add_front(pdq, 2); // 2 1
 	add_rear(pdq, 3); // 2 1 3
-	delete_front(pdq); // 1 3
+	delete_front(pdq); // 1 3add_front(pdq, 2); // 2 1
 	delete_rear(pdq); // 1
+	add_front(pdq, 2); // 2 1
 
 	return 0;
 }
