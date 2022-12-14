@@ -54,7 +54,7 @@ void add_rear(DequeType* dq, element item) // 덱의 뒤에서 노드를 삽입하는 함수
 	dq->tail = new_node; // 덱의 tail에 새 노드 지정
 }
 
-element delete_front(DequeType* dq) // 덱의 앞에서 노드를 삽입하는 함수
+element delete_front(DequeType* dq) // 덱의 앞에서 노드를 제거하는 함수
 {
 	element item;
 	DlistNode* removed_node;
@@ -71,6 +71,23 @@ element delete_front(DequeType* dq) // 덱의 앞에서 노드를 삽입하는 함수
 	return item;
 }
 
+element delete_rear(DequeType* dq) // 덱의 뒤에서 노드를 제거하는 함수
+{
+	element item;
+	DlistNode* removed_node;
+
+	removed_node = dq->tail; // 삭제할 노드
+	item = removed_node->data; // 데이터 추출
+	dq->tail = dq->tail->llink; // tail 변경
+	free(removed_node); // 메모리 공간 반납
+	if (dq->tail == NULL) // 공백 상태이면
+		dq->head = NULL;
+	else // 공백상태가 아니면
+		dq->tail->rlink = NULL;
+
+	return item;
+}
+
 
 int main() {
 
@@ -83,6 +100,7 @@ int main() {
 	add_front(pdq, 2); // 2 1
 	add_rear(pdq, 3); // 2 1 3
 	delete_front(pdq); // 1 3
+	delete_rear(pdq); // 1
 
 	return 0;
 }
